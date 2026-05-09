@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Google Calendar: Tasks by Default",
+  "version": "1.1.0",
+  "description": "Silently switches the Google Calendar quick-create dialog to Task mode.",
+  "host_permissions": [
+    "https://calendar.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
