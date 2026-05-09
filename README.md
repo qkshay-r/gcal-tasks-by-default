@@ -32,7 +32,7 @@ Chrome doesn't allow unpacked extensions from the web store without review, so y
 
 Two files. That's the whole extension.
 
-**`content.js`** — injects a CSS rule that sets `opacity: 0` on any dialog node the instant it lands in the DOM. Then uses `requestAnimationFrame` to click the Task tab and remove the hide class — all before the browser paints the first frame.
+**`content.js`** — injects a CSS rule that sets `opacity: 0` on any dialog node the instant it lands in the DOM. A `requestAnimationFrame` callback then clicks the Task tab and removes the hide class before the next paint, keeping the switch invisible in practice.
 
 **`manifest.json`** — declares the content script and scopes permissions to `calendar.google.com` only. Nothing else.
 

@@ -3,7 +3,6 @@
 
   const HIDE = "gcal-task-hide";
 
-  // Inject a style that instantly hides the dialog the moment it's added to the DOM.
   const style = document.createElement("style");
   style.textContent = `.${HIDE} { opacity: 0 !important; }`;
   document.head.appendChild(style);
@@ -24,13 +23,10 @@
     for (const { addedNodes } of mutations) {
       for (const node of addedNodes) {
         if (node.nodeType !== Node.ELEMENT_NODE) continue;
-        const hasTabs = node.querySelector?.('[role="tab"]');
+        const hasTabs = node.querySelector('[role="tab"]'); // optional chaining unnecessary here
         if (!hasTabs) continue;
 
-        // Hide immediately before first paint
         node.classList.add(HIDE);
-
-        // Switch tab, then reveal — all before the browser has a chance to paint
         requestAnimationFrame(() => switchAndReveal(node));
       }
     }
